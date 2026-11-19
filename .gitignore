@@ -1,0 +1,17 @@
+# Local EESM input. See README.md for source and placement.
+/awgn_bler10_t1.csv
+
+# Simulation output directories and generated artifacts.
+results*/
+/analysis/cdl_toolbox_comparison/
+*.csv
+*.mat
+*.log
+*.fig
+*.png
+*.pdf
+*.zip
+
+# MATLAB editor backups.
+*.asv
+*.m~
