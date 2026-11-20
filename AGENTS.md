@@ -48,7 +48,9 @@ files = plotNrStrictThp(fullfile(opts.outputDir,'confirm_thp.csv'),opts.outputDi
 - 复现实验的口径是单用户、4T256R、6.7 GHz、288 RB、30 kHz SCS、MMSE-IRC 和 NR 码本。主结果累计实际 SRS age ≤20 ms 的有效比特，并除以整个 50 ms 仿真时长。RF 误差按端口对检查，界限为 40° 和 4 dB。四条主曲线依次是理想相干、非理想相干、反馈校准和调度校准，调度校准在代码中称 `Reselect`。链路使用 SRS 时刻的信道快照和 EESM 吞吐率估算。
 - 安装 5G Toolbox 时，可用 `opts.backend='5g-toolbox'` 跑可选参考后端，或按 README 的命令运行 `analysis` 下的三个信道对照脚本。输出默认写入本地 `analysis/cdl_toolbox_comparison/`。相同 `Seed` 可重现各自后端的信道。逐复系数对照时需要对齐射线耦合和初相。
 
-## Git 提交
+## Git 提交与同步
 
-- 用 `git diff --cached --name-only` 检查待提交文件。跟踪源码、测试、绘图和对照脚本及使用说明。查表输入、运行结果、日志和检查点保存在本机。
+- 同步远端为 `origin`，对应 GitHub 私有仓库 [zhangzij15/mimo-coherence-calibration](https://github.com/zhangzij15/mimo-coherence-calibration)。推送前用 `git remote get-url --push origin` 核对目标。
+- 完成修改后运行相关测试。测试通过且用户明确批准本次提交时，先提交本次改动，再推送当前分支到上述私有仓库，并核对远端提交号。用户对本次提交的批准同时授权这次推送。用户当次明确要求仅在本地提交时，按当次要求执行。其余修改保留在本地工作区，等待用户批准。
+- 用 `git diff --cached --name-only` 核对暂存文件，并在推送前检查将同步的提交。提交范围为本次改动的源码、测试、绘图和对照脚本及使用说明。`awgn_bler10_t1.csv` 和仿真结果始终保存在本机，包括结果 CSV、图、日志和 `.mat` 检查点。遵守 `.gitignore` 的排除规则。
 - 正式仿真将 `git rev-parse --short HEAD` 返回的版本号与结果一起保存在本地，方便另一台机器复现。
